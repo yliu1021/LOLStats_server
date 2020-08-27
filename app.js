@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 const path = require("path");
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 80;
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/analyze", (req, res) => {
+  console.log(`Analyzing ${req.query.summoner}`);
   const searchParams = new URLSearchParams();
   searchParams.append("summoner", encodeURIComponent(req.query.summoner));
   searchParams.append("num_matches", encodeURIComponent(req.query.num_matches));
